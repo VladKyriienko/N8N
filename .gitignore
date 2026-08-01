@@ -1,0 +1,19 @@
+# Secrets — NEVER commit
+.env
+.env.local
+.env.*.local
+
+# Backups
+backups/
+*.tar.gz
+*.sql
+*.sql.gz
+*.dump
+
+# macOS
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+*.swp
