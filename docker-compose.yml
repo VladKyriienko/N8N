@@ -1,3 +1,6 @@
+# Keep project name stable so volumes stay n8n_auto_* after folder rename.
+name: n8n_auto
+
 services:
   postgres:
     image: postgres:16.14-alpine
@@ -29,7 +32,7 @@ services:
         max-file: '3'
 
   n8n:
-    image: n8nio/n8n:2.32.7
+    image: n8nio/n8n:2.35.2
     restart: unless-stopped
     depends_on:
       postgres:

@@ -66,7 +66,7 @@ docker compose version
 
 ```bash
 git clone <YOUR_REPOSITORY_URL>
-cd N8N_auto
+cd N8N
 ```
 
 > **macOS tip:** Dotfiles (`.env`, `.gitignore`, …) are hidden in Finder by default.
@@ -179,7 +179,7 @@ docker compose up -d n8n
 ## Project structure
 
 ```
-N8N_auto/
+N8N/
 ├── docker-compose.yml   # Service definitions
 ├── .env.example         # Environment variable template
 ├── .env                 # Your secrets (not in git)
