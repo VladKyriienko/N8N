@@ -157,13 +157,13 @@ On first login, n8n will ask you to create an owner account.
 # Follow logs for all services
 docker compose logs -f
 
-# Follow logs for a specific service
+# Follow logs for a specific service (name in compose, not the container)
 docker compose logs -f n8n
 
 # Stop all services
 docker compose down
 
-# Stop and remove data (volumes)
+# Stop and remove data (volumes) — this deletes the database and workflows
 docker compose down -v
 
 # Restart
@@ -192,14 +192,36 @@ N8N/
 
 ## Data persistence
 
-Data lives in Docker volumes and survives container restarts:
+Data lives in Docker volumes (not in this folder) and survives container restarts.
+The Compose project name is `n8n`, so the volumes on disk are:
 
-| Volume          | Contents                             |
-| --------------- | ------------------------------------ |
-| `postgres_data` | PostgreSQL database                  |
-| `n8n_data`      | Workflows, credentials, n8n settings |
+| Volume              | Contents                             |
+| ------------------- | ------------------------------------ |
+| `n8n_postgres_data` | PostgreSQL database                  |
+| `n8n_n8n_data`      | Workflows, credentials, n8n settings |
+
+`backups/` is a folder in the project (bind-mounted). `.env` also lives in the project folder.
 
 > To wipe all data, use `docker compose down -v`.
+
+---
+
+## Moving the project folder
+
+You can move or rename this folder on the same machine. Volumes stay attached because Compose uses a fixed project name (`n8n`), not the directory name.
+
+```bash
+# 1. Stop the stack — do not use -v
+docker compose down
+
+# 2. Move the whole folder (including .env and backups/)
+
+# 3. Start from the new path
+cd /new/path
+docker compose up -d
+```
+
+Do not move the folder while containers are running: the `backups/` bind-mount keeps the old absolute path until you recreate the stack.
 
 ---
 
