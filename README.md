@@ -129,12 +129,12 @@ docker compose ps
 
 You should see four containers with status `Up`:
 
-| Container       | Status       |
-| --------------- | ------------ |
-| postgres        | Up (healthy) |
-| n8n             | Up (healthy) |
-| ngrok           | Up           |
-| postgres-backup | Up (healthy) |
+| Container           | Status       |
+| ------------------- | ------------ |
+| n8n-postgres        | Up (healthy) |
+| n8n-app             | Up (healthy) |
+| n8n-ngrok           | Up           |
+| n8n-postgres-backup | Up (healthy) |
 
 n8n does not start instantly — it runs database migrations first (up to a minute).
 ngrok waits until n8n is `healthy`, so a short pause on startup is expected.
